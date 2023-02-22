@@ -1,11 +1,18 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import auth from "@react-native-firebase/auth";
+import { StyleSheet, Text, View, Button } from "react-native";
 
 export default function App() {
+  function handleSignIn() {
+    auth()
+      .signInWithEmailAndPassword("erikdesouzagf@gmail.com", "123456")
+      .then((response) => console.log(response))
+      .catch((err) => console.log(err));
+  }
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <Text>Login</Text>
+      <Button title="Entrar" onPress={handleSignIn} />
     </View>
   );
 }
@@ -13,8 +20,8 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
